@@ -57,6 +57,7 @@ class TodoListViewController: UITableViewController {
             
             newItem.title = text
             newItem.done = false
+            newItem.parentCategory = self.selectedCategory
             
             self.itemArray.append(newItem)
             self.saveItems()
@@ -138,6 +139,10 @@ extension TodoListViewController {
             guard let textField = alert.textFields?.first else {
                 actionHandler?(nil)
                 
+                return
+            }
+            
+            if textField.text!.count == 0 {
                 return
             }
             
